@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>留言页面</title>
+	<style type="text/css">
+.container {
+	position: relative;
+	z-index: 1;
+	max-width: 300px;
+	margin: 0 auto;
+}
+.container:before, .container:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.container .info {
+	margin: 50px auto;
+	text-align: center;
+}
+.container .info h1 {
+	margin: 0 0 15px;
+	padding: 0;
+	font-size: 36px;
+	font-weight: 300;
+	color: #1a1a1a;
+}
+.container .info span {
+	color: #4d4d4d;
+	font-size: 12px;
+}
+.container .info span a {
+	color: #000000;
+	text-decoration: none;
+}
+.container .info span .fa {
+	color: #EF3B3A;
+}
+body {
+	/*background: #9fafac; !* fallback for old browsers *!*/
+	background: url("/static/show/bg.jpg");
+	/*background-size: 100%$;*/
+
+	background-repeat: no-repeat;
+
+	font-family: "Roboto", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+
+.title{
+    text-align: center;
+    margin-top: 20%;
+}
+.content{
+    width: 100%;
+    /*margin: 0 auto;*/
+    margin-top: 200px;
+    /*position: absolute;*/
+    /*top: 400px;*/
+
+}
+.content textarea{
+    display: block;
+    border:0;
+    border-radius:5px;
+    background-color:rgba(241,241,241,.98);
+    width: 96%;
+    /*margin:0 auto;*/
+    height: 100px;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: "Microsoft soft";
+    padding: 5px;
+    resize: none;
+}
+
+.content button{
+
+    display: block;
+    border:0;
+    border-radius:5px;
+    width: 100%;
+    height: 40px;
+    margin: 0 auto;
+    margin-top: 20px;
+    background: #b92c28;
+    color: #FFFFFF;
+    font-size: 14px;
+
+}
+</style>
+	</head>
+	<body>
+<div id="wrapper" class="container">
+        <div class="title">
+            <h1>标题</h1>
+</div>
+        <div class="content">
+            <textarea style="" id="content" placeholder="在这里输入要留言的内容"></textarea>
+                    <button class="sub">点击提交</button>
+
+</div>
+	</div>
+<script src="/static/js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+	function check_login()
+	{
+	 var name=$("#user_name").val();
+	 var pass=$("#password").val();
+	 if(name=="admin" && pass=="admin")
+	 {
+
+           window.location.href = '/index.php/index/index/main';
+	 }
+	 else
+	 {
+           alert('账号或密码错误');
+	 }
+	}
+	$(function(){
+
+		$(".sub").click(function(){
+			// check_login();
+			var content = $("#content").val();
+			if (content == ''){
+			    alert('请填写内容');
+			    return false;
+			}
+			$.ajax({
+                url: '/index.php/index/index/add',
+                data: {
+                    content : content,
+                },
+                success: function(res) {
+                    if (res == 1){
+                        alert('留言成功');
+                        window.location.reload();
+                    }else if(res ==0){
+                        alert('服务器异常');
+                        window.location.reload();
+                        return false;
+                    }else{
+                        alert(res)
+                    }
+                },
+                error: function(res) {
+                   alert('发送失败!');
+                }
+			})
+			return false;
+		})
+
+	})
+	</script>
+</body>
+</html>
