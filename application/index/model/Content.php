@@ -18,7 +18,8 @@ class Content extends Model
     protected $hidden = [
         'time',
         'is_read',
-        'is_sw'
+        'is_sw',
+        'is_sw_read'
     ];
 
 }

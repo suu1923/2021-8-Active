@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>内容管理页</title>
+  <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <script src="/static/js/jquery-2.1.1.min.js" type="text/javascript"></script>
+  <script src="/static/bootstrap/js/bootstrap.js" type="text/javascript"></script>
+</head>
+<body>
+
+<div class="table-responsive" style="padding: 20px;">
+
+<div class="alert alert-info message-s" style="display:none;width:300px;height: 50px;position: fixed;top: 20px;right: 20px" role="alert"></div>
+
+<table class="table table-bordered" style="text-align: center">
+<tr>
+    <td>排名</td>
+  <td>名字</td>
+  <td>投票数</td>
+  <td>图像</td>
+</tr>
+{volist  name="data" id="vo2"}
+    <tr >
+        <td style="line-height: 100px">{$key+1}</td>
+        <td style="line-height: 100px">{$vo2.name}</td>
+        <td style="line-height: 100px">{$vo2.num}</td>
+        <td><img src="__ACT__/{$vo2.path}" width="100px" height="100px" alt=""></td>
+
+
+</tr>
+{/volist}
+</table>
+
+</div>
+</body>
+</html>

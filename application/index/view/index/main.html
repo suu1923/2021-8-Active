@@ -16,6 +16,7 @@
 
 <button type="button" class="btn btn-info  btn-sm get_all" >点击显示全部</button>
 <button type="button" class="btn btn-danger  btn-sm get_all_re" >点击筛选全部违禁留言</button>
+<button type="button" class="btn btn-danger  btn-sm clean_all" >删除全部</button>
 
 <br/>
 <br/>
@@ -149,6 +150,42 @@ $(".ban").on('click',function() {
             }
         });
 })
+$(".clean_all").on('click',function() {
+    console.log($(this).data('id'))
+
+    if (confirm('您确定要删除么') == true){
+           $id = $(this).data('id');
+                $.ajax({
+                    type : "POST",
+                    url : "/index.php/index/index/clean_all",
+                    data : {
+                        // id: $(this).data('id')
+                    },
+                    success : function(result) {
+                        if(result){
+                            $('.message-s').text('清理成功');
+                            $('.message-s').show();
+                            window.location.reload();
+                        }else{
+                            $('.message-s').text('清理失败');
+                            $('.message-s').show();
+                            window.location.reload();
+                        }
+
+                    },
+                    error : function(e){
+                        $('.message-s').text('清理失败');
+                        $('.message-s').show();
+                        window.location.reload();
+                    }
+                });
+    }else{
+        return false;
+    }
+
+
+    })
+
 </script>
 
 </div>

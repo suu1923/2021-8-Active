@@ -2,12 +2,10 @@
 namespace app\index\controller;
 
 use app\index\model\Content;
+use think\Cache;
 use think\Controller;
-use think\db\exception\DataNotFoundException;
-use think\db\exception\ModelNotFoundException;
-use think\exception\DbException;
+use think\Db;
 use think\Request;
-use think\Validate;
 
 class Index extends Controller
 {
@@ -24,9 +22,11 @@ class Index extends Controller
             $name = Request::instance()->post('name');
             $pwd = Request::instance()->post('pwd');
 
-            dump($name);
-            dump($pwd);
-
+            if ($name == 'admin' && $pwd == 'admin') {
+                Cache::set('login_name',$name);
+                $this->success('登陆成功','index/index/main');
+            }
+            // 其余转向第二个系统
 
         }else{
             $this->error("登录错误");
@@ -35,6 +35,12 @@ class Index extends Controller
     }
 
     public function main(){
+
+        $cache = Cache::get('login_name');
+        if (!$cache || empty($cache) || $cache === false){
+            $this->redirect('index/index/index');
+        }
+
 
         $contentModel = new Content();
 
@@ -51,7 +57,7 @@ class Index extends Controller
             if ($is_sw) {
                 $query->where('is_sw',1);
             }
-        })->order('time desc')->paginate(10,false,['query'=>Request::instance()->param()]);
+        })->order('time desc')->paginate(50,false,['query'=>Request::instance()->param()]);
 
         $page = $data->render();
 
@@ -109,20 +115,21 @@ class Index extends Controller
             $contentModel = new Content();
                 $res = $contentModel->where(
                     ['is_sw'=>0,'is_read'=>0]
-                )->order('time desc')->limit(5)->select();
+                )->order('time asc')->limit(1)->find();
 
                 // 获取后更改状态
+//                var_dump($res->toArray());
+//                if (count($res) > 0){
+//                    $ids = [];
+//                    foreach ($res as $re){
+//                        $ids[] = ['id'=>$re['id'],'is_read'=>1];
+//                    }
+//                    $contentModel->saveAll($ids);
+//                }
 
-                if (count($res) > 0){
-                    $ids = [];
-                    foreach ($res as $re){
-                        $ids[] = ['id'=>$re['id'],'is_read'=>1];
-                    }
-                    $contentModel->saveAll($ids);
-                }
-
-
-                return $res ? json($res) : "null";
+                $contentModel->update(['is_read'=>1],['id'=>$res['id']]);
+                header('Content-Type:application/json; charset=utf-8');
+                return $res ? json_encode(['id'=>$res['id'],'content'=>$res['content']],JSON_UNESCAPED_UNICODE) : "null";
         }
         return '请求方式错误';
     }
@@ -192,14 +199,23 @@ class Index extends Controller
             $this->error("请求方式错误");
         }
     }
-
+    public function clean_all(){
+        if (Request::instance()->isPost()){
+            return Db::execute('truncate table content');
+        }else{
+            $this->error("请求方式错误");
+        }
+    }
     public function get_content_with_w(){
         if (Request::instance()->isGet()){
             $contentModel = new Content();
             $res = $contentModel->where(
-                ['is_sw'=>0,'is_read'=>0]
-            )->order('time desc')->select();
-            return $res ? json($res) : "null";
+                ['is_sw'=>1,'is_read'=>1,'is_sw_read'=>0]
+            )->order('time desc')->field('id')->limit(1)->value('id');
+
+            $contentModel->save(['is_sw_read'=>1],['id'=>$res]);
+
+            return $res ? $res : "null";
         }
         return '请求方式错误';
     }
