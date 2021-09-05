@@ -24,9 +24,11 @@
 <table class="table table-bordered" style="text-align: center">
 <tr>
   <td width="10%">留言ID</td>
-  <td width="10%">留言名字</td>
-  <td width="40%">内容</td>
+  <td width="8%">留言名字</td>
+  <td width="32%">内容</td>
   <td width="5%">留言字数</td>
+    <td width="5%">样式类型ID</td>
+    <td width="5%">按钮类型ID</td>
   <td>留言时间</td>
   <td width="5%">是否已发送</td>
   <td width="5%">是否含有违禁词</td>
@@ -39,6 +41,8 @@
 
         <td>{$vo2.content}</td>
         <td>{$vo2.content|mb_strlen}</td>
+        <td>{$vo2.type}</td>
+        <td>{$vo2.btn_type}</td>
 
         <td>{$vo2.time|date='Y-m-d H:i:s',###}</td>
 

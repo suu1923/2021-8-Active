@@ -59,20 +59,16 @@ class Index extends Controller
             }
         })->order('time desc')->paginate(50,false,['query'=>Request::instance()->param()]);
 
+
+
         $page = $data->render();
 
         foreach ($data as $da){
             $content = explode("&",$da['content']);
-
-
-
-            if(count($content) == 2){
-                $da['name'] = $content[0];
-                $da['content'] = $content[1];
-            }else{
-                $da['name'] = 'null';
-            }
-
+            $da['name'] = isset($content[0]) ? $content[0] : 'null';
+            $da['content'] = isset($content[1]) ? $content[1] : '获取失败';
+            $da['type'] = isset($content[2]) ? $content[2] : 1;
+            $da['btn_type'] = isset($content[3]) ? $content[3] : 1;
         }
 
         $this->view->assign('total',$total);
