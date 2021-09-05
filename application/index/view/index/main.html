@@ -23,17 +23,23 @@
 <h4>累积留言  <span style="color: #000;font-weight: bold">{$total}</span>  条</h4>
 <table class="table table-bordered" style="text-align: center">
 <tr>
-  <td  width="10%">留言ID</td>
-  <td  width="40%">内容</td>
+  <td width="10%">留言ID</td>
+  <td width="10%">留言名字</td>
+  <td width="40%">内容</td>
+  <td width="5%">留言字数</td>
   <td>留言时间</td>
-  <td>是否已发送</td>
-  <td >是否含有违禁词</td>
+  <td width="5%">是否已发送</td>
+  <td width="5%">是否含有违禁词</td>
   <td >操作</td>
 </tr>
 {volist  name="content_data" id="vo2"}
     <tr>
         <td>{$vo2.id}</td>
+        <td>{$vo2.name}</td>
+
         <td>{$vo2.content}</td>
+        <td>{$vo2.content|mb_strlen}</td>
+
         <td>{$vo2.time|date='Y-m-d H:i:s',###}</td>
 
         {if condition="($vo2.is_read == 1)"}

@@ -5,8 +5,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>留言页面</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/swiper.min.css">
 	<style type="text/css">
 .container {
+    height: 100vh;
 	position: relative;
 	z-index: 1;
 	max-width: 300px;
@@ -41,7 +43,7 @@
 }
 body {
 	/*background: #9fafac; !* fallback for old browsers *!*/
-	background: url("/static/show/bg.jpg");
+	/*background: url("/static/show/bg.jpg");*/
 	/*background-size: 100%$;*/
 
 	background-repeat: no-repeat;
@@ -78,7 +80,21 @@ body {
     padding: 5px;
     resize: none;
 }
-
+.content input{
+    display: block;
+    border:0;
+    border-radius:5px;
+    background-color:rgba(241,241,241,.98);
+    width: 96%;
+    /*margin:0 auto;*/
+    height: 40px;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: "Microsoft soft";
+    padding: 5px;
+    resize: none;
+    margin-bottom: 20px;
+}
 .content button{
 
     display: block;
@@ -96,18 +112,35 @@ body {
 </style>
 	</head>
 	<body>
-<div id="wrapper" class="container">
-        <div class="title">
-            <h1>标题</h1>
-</div>
-        <div class="content">
-            <textarea style="" id="content" placeholder="在这里输入要留言的内容"></textarea>
-                    <button class="sub">点击提交</button>
+	<div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
 
+                <div id="wrapper" class="container">
+                    <div class="title">
+                        <h1>标题</h1>
+                    </div>
+                   <div class="content">
+                       <input type="text" id="name" placeholder="在这里输入您的名字" maxlength="20">
+                       <textarea style="" id="content" placeholder="在这里输入要留言的内容" maxlength="200"></textarea>
+                       <button class="sub">点击提交</button>
+                   </div>
+                </div>
+
+           </div>
+            <div class="swiper-slide">
+
+            1
 </div>
-	</div>
+        </div>
+    </div>
+
 <script src="/static/js/jquery-2.1.1.min.js"></script>
+<script src="/static/js/swiper.min.js"></script>
 <script type="text/javascript">
+    var swiper = new Swiper('.swiper-container', {
+      direction: 'vertical'
+    });
 	function check_login()
 	{
 	 var name=$("#user_name").val();
@@ -126,15 +159,22 @@ body {
 
 		$(".sub").click(function(){
 			// check_login();
+			var name = $("#name").val();
 			var content = $("#content").val();
-			if (content == ''){
-			    alert('请填写内容');
+			if (content == '' || name == ''){
+			    alert('请填写名字和内容不能为空哦');
+			    return false;
+			}
+			// alert(content.length);
+			// return false;
+			if (content.length > 200){
+			    alert("留言内容太多了,请删除一些");
 			    return false;
 			}
 			$.ajax({
                 url: '/index.php/index/index/add',
                 data: {
-                    content : content,
+                    content : name+"&"+content,
                 },
                 success: function(res) {
                     if (res == 1){

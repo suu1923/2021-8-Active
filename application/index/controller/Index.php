@@ -61,6 +61,19 @@ class Index extends Controller
 
         $page = $data->render();
 
+        foreach ($data as $da){
+            $content = explode("&",$da['content']);
+
+
+
+            if(count($content) == 2){
+                $da['name'] = $content[0];
+                $da['content'] = $content[1];
+            }else{
+                $da['name'] = 'null';
+            }
+
+        }
 
         $this->view->assign('total',$total);
         $this->view->assign('page',$page);
@@ -85,7 +98,10 @@ class Index extends Controller
             if (true !== $validate){
                 return $validate;
             }
-
+            if (mb_strlen($content) > 200){
+                return json('留言过长！');
+            }
+            
             $is_sw = false;
 
             $data['content'] = $content;
@@ -98,7 +114,7 @@ class Index extends Controller
             }
 
             $contentModel = new Content();
-
+            
             $insert = $contentModel->insert($data);
 
 
@@ -170,7 +186,7 @@ class Index extends Controller
                 return $validate;
             }
 
-            $res = $contentModel->save(['is_sw'=>0],['id'=>$id]);
+            $res = $contentModel->save(['is_sw'=>0,'is_read'=>0],['id'=>$id]);
 
             return $res ? 'Success' : 'Error';
         }else{
