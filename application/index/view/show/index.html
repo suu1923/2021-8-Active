@@ -1,169 +1,285 @@
 <!DOCTYPE html>
 <html lang="zh">
-	<head>
+    <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <meta name="viewport" content="width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-	<title>留言页面</title>
-	<link rel="stylesheet" type="text/css" href="/static/css/swiper.min.css">
-	<style type="text/css">
+    <title>留言页面</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/swiper.min.css">
+    <style type="text/css">
 
 body {
-	background: url("/static/img/bg.png");
-	background-repeat: no-repeat;
-	font-family: "Roboto", sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-    -ms-overflow-style: none; /* IE 10+ */
-
+    background:url("/static/img/bg.png");
+    background-repeat:no-repeat;
+    font-family:"Roboto",sans-serif;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    -ms-overflow-style:none;
+    /* IE 10+ */
+    margin:0;
 }
-.content{
-    width: 70%;
-    position: absolute;
-    top: 110px;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    text-align: center;
+@font-face {
+    font-family:"SSR";
+    src:url("/static/font/SSR.woff");
 }
-.content textarea{
-    display: block;
+@font-face {
+    font-family:"SSB";
+    src:url("/static/font/SSB.woff");
+}
+.content {
+    width:70%;
+    position:absolute;
+    top:110px;
+    left:0;
+    right:0;
+    margin:0 auto;
+    text-align:center;
+}
+.content textarea {
+    display:block;
     border:0;
     border-radius:5px;
     background-color:rgba(241,241,241,.98);
-    width: 96%;
-    height: 200px;
-    font-size: 14px;
-    font-weight: 700;
-    font-family: "Microsoft soft";
-    padding: 5px;
-    resize: none;
-    overflow-y: hidden;
-    overflow-x: hidden;
-
+    width:96%;
+    height:200px;
+    font-size:14px;
+    font-weight:700;
+    font-family:"Microsoft soft";
+    padding:5px;
+    resize:none;
+    overflow-y:hidden;
+    overflow-x:hidden;
 }
-
-.content input{
-    display: block;
+.content input {
+    display:block;
     border:0;
     border-radius:5px;
     background-color:rgba(241,241,241,.98);
-    width: 40%;
-    height: 30px;
-    font-size: 14px;
-    font-weight: 700;
-    font-family: "Microsoft soft";
-    padding: 5px;
-    resize: none;
-    margin-bottom: 20px;
-    overflow-y: hidden;
+    width:40%;
+    height:30px;
+    font-size:14px;
+    font-weight:700;
+    font-family:"Microsoft soft";
+    padding:5px;
+    resize:none;
+    margin-bottom:20px;
+    overflow-y:hidden;
 }
-
-
-.bg{
-    width: 100%;
-    height: 99vh;
+.bg {
+    width:100%;
+    height:100vh;
 }
-
 .bg1 {
-    background: url("/static/img/p1.png");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background:url("/static/img/p1.png");
+    background-repeat:no-repeat;
+    background-size:100% 100%;
 }
-.sub{
-    background: url("/static/img/btn.png");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    border: none;
-    width: 75%;
-    height: 45px;
-    margin-top: 30px;
+.sub {
+    background:url("/static/img/btn.png");
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+    border:none;
+    width:75%;
+    height:45px;
+    margin-top:30px;
 }
-.bg2{
-    width: 100%;
-    height: 100vh;
+.bg2 {
+    width:100%;
+    height:100vh;
 }
-.bg2 .show{
-    height: 75%;
-    background: #fff;
-    width: 80%;
-    margin: 30px auto;
-    border-radius: 13px;
-    box-shadow: 8px 5px 14px 0px #888888;
-}
-.bg2 .show .top{
-    width: 100%;
-    height: 30px;
-    padding-top: 10px;
-}
-        .bg2 .show .top .back{
-            width: 10%;
-            float: left;
-            margin-left: 10px;
-        }
-.bg2 .show .top .titles{
-    float: left;
-    margin-left: 40px;
-}
-.content-img{
-    width: 70%;
-    border: 5px solid rgb(230,202,157);
-    border-radius: 10px;
-    margin: 20px auto;
-}
-.content-img img{
-    width: 100%;
-    height: 100%;
-}
-        .bg2 .btn-group{
-            width: 80%;
-            margin: 0 auto;
-            z-index: 9999 !important;
+.bg2 .show {
 
-        }
+    background:#fff;
+    width:80%;
+    margin:5px auto;
+    border-radius:13px;
+    box-shadow:8px 5px 14px 0px #888888;
+}
+.bg2 .show .top {
+    width:100%;
+    height:30px;
+    padding-top:5px;
+}
+.bg2 .show .top .back {
+
+    margin-left:10px;
+    position:absolute;
+}
+.bg2 .show .top .titles {
+
+    text-align:center;
+}
+.content-img {
+    width:80%;
+
+    border-radius:10px;
+    margin:10px auto;
+
+}
+.content-img img {
+    width:100%;
+    height:100%;
+}
+.bg2 .btn-group {
+    width:80%;
+    margin:0 auto;
+    z-index:9999 !important;
+}
 .bg2 .btn-group .group1,.group2 {
-    width: 100%;
-    height: 50px;
+    width:100%;
+    height:40px;
 }
-.bg2 .btn-group .group1 .btn1,.btn2{
-    border: none;
-    background: rgb(212,160,89);
-    height: 50px;
-    width: 49%;
-    color: #fff;
-    border-radius: 25px;
-    font-size: 18px;
+.bg2 .btn-group .group1 .btn1,.btn2 {
+    border:none;
+    background:rgb(212,160,89);
+    height:40px;
+    width:49%;
+    color:#fff;
+    border-radius:25px;
+    font-size:18px;
 }
-.bg2 .btn-group .group2 .btn3{
-    border: none;
-    background: rgb(212,160,89);
-    height: 50px;
-    width: 100%;
-    color: #fff;
-    border-radius: 25px;
-    font-size: 18px;
-    margin-top: 10px;
+.bg2 .btn-group .group2 .btn3 {
+    border:none;
+    background:rgb(212,160,89);
+    height:40px;
+    width:100%;
+    color:#fff;
+    border-radius:25px;
+    font-size:18px;
+    margin-top:10px;
+}
+.swiper-pagination-bullet-active {
+    background:rgb(212,160,89);
+    z-index:2 !important;
 }
 
-.swiper-pagination-bullet-active{
-    background: rgb(212,160,89);
-    z-index: 2 !important;
+
+
+/*适配*/
+/*iPhone5和iPhoneSE*/
+@media only screen 
+    and (device-width:320px) 
+    and (device-height:568px) 
+    and (-webkit-device-pixel-ratio:2) {
+                .bak > img{
+            width: 25px;
+            height: 25px;
+        }
+        .titles > img{
+            height: 25px;
+        }
+        .bg2 .show{
+            margin: 2px auto;
+        }
+        .sub{
+            height: 40px;
+    margin-top: 25px;
+        }
+        .content{
+            top: 90px;
+        }
+    .content textarea{
+        height: 100px;
+    }
+    .content-img{
+        margin: 2px auto;
+    }
+        
+.bg2 .btn-group .group1 .btn1,.btn2 {
+    border:none;
+    background:rgb(212,160,89);
+    height:30px;
+    width:49%;
+    color:#fff;
+    border-radius:25px;
+    font-size:16px;
+}
+.bg2 .btn-group .group2 .btn3 {
+    border:none;
+    background:rgb(212,160,89);
+    height:30px;
+    width:100%;
+    color:#fff;
+    border-radius:25px;
+    font-size:16px;
+    margin-top:0px;
+}
+}
+
+/*iPhone6和iPhone8*/
+@media only screen 
+    and (device-width:375px) 
+    and (device-height:667px) 
+    and (-webkit-device-pixel-ratio:2) {
+                .bak > img{
+            width: 25px;
+            height: 25px;
+        }
+        .titles > img{
+            height: 25px;
+        }
+        .bg2 .show{
+            margin: 2px auto;
+        }
+                .sub{
+            height: 40px;
+    margin-top: 25px;
+        }
+        .content{
+            top: 90px;
+        }
+    .content textarea{
+        height: 100px;
+    }
+            .content-img{
+        margin: 2px auto;
+    }
+
+    .bg2 .btn-group .group1 .btn1,.btn2 {
+        border:none;
+        background:rgb(212,160,89);
+        height:30px;
+        width:49%;
+        color:#fff;
+        border-radius:25px;
+        font-size:16px;
+    }
+    .bg2 .btn-group .group2 .btn3 {
+        border:none;
+        background:rgb(212,160,89);
+        height:30px;
+        width:100%;
+        color:#fff;
+        border-radius:25px;
+        font-size:16px;
+        margin-top:0px;
+    }
+
+        
+    }
+@media only screen 
+    and (device-width:375px) 
+    and (device-height:812px) 
+    and (-webkit-device-pixel-ratio:3) {
+    .bg2 .show {
+        margin:15px auto;
+    }
 }
 </style>
-	</head>
-	<body>
+    </head>
+    <body>
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
 
                     <div class="bg bg1">
                         <div class="content">
-                            <input type="text" id="name" class="name"  placeholder="你的名字"
-                                   maxlength="20">
+                            <input type="text" id="name" class="name"  placeholder="名字,默认匿名"
+                                   maxlength="6">
                             <textarea style="" id="content" onblur="toTop()"
                                       placeholder="写下你想说的~"
-                                      maxlength="200"></textarea>
+                                      maxlength="100"></textarea>
                             <button class="sub"></button>
                         </div>
                     </div>
@@ -178,32 +294,54 @@ body {
                                 </div>
                                 <div class="titles">
                                     <img src="/static/img/title.png" height="30px" alt="">
-
                                 </div>
-
                             </div>
                             <div class="content2">
                                 <div class="swiper-container-content">
                                     <div class="swiper-wrapper">
-                                        <div class="swiper-slide">
-                                            <div class="content-img">
-                                                <img src="/static/img/type1.png" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="content-img">
-                                                <img src="/static/img/type2.png" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="content-img">
-                                                <img src="/static/img/type3.png" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-pagination"
-                                         style="position: relative;top: 0px;z-index: 2 !important;"></div>
+                        
 
+  
+
+
+                                        <div class="swiper-slide">
+                                            <div class="content-img">
+                                                <canvas id="type1" style="display: none;"></canvas>
+                                                <img id="type_img1" src="">
+                                            </div>
+                                        </div>
+                                                                <div class="swiper-slide">
+                                            <div class="content-img">
+                                                <canvas id="type2" style="display: none;"></canvas>
+                                                <img id="type_img2" src="">
+                                            </div>
+                                        </div>
+                                                                              <div class="swiper-slide">
+                                            <div class="content-img">
+                                                <canvas id="type3" style="display: none;"></canvas>
+                                                <img id="type_img3" src="">
+                                            </div>
+                                        </div>
+<!--                                         <div class="swiper-slide">
+                                            <div class="content-img">
+                                                <img src='/static/img/type2.png' width="100%" height="100%"/>
+                                                <p class="s2_text"></p>
+                                                <p class="s2_title"></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="swiper-slide">
+                                            <div class="content-img">
+                                                <img src='/static/img/type3.png' width="100%" height="100%"/>
+                                                <p class="s3_title"></p>
+                                                <p class="s3_text"></p>
+                                            </div>
+                                        </div> -->
+                                    </div>
+
+                                    <div class="swiper-pagination"
+                                         style="position: relative;top: 0px;z-index: 2 !important;">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -220,7 +358,6 @@ body {
                 </div>
             </div>
         </div>
-
 <script src="/static/js/jquery-2.1.1.min.js"></script>
 <script src="/static/js/swiper.min.js"></script>
 <script type="text/javascript">
@@ -243,31 +380,143 @@ body {
         autoplay:false,
     })
 
+
     // 回到最顶部
     function toTop(){
         scrollTo(0,0);
     }
-	$(function(){
-
-
-	    // 返回上一层
-		$(".sub").click(function(){
+    $(function(){
+        // 返回上一层
+        var ua = window.navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+            //重写alert方法，alert()方法重写，不能传多余参数
+            window.alert = function(name){
+                var iframe = document.createElement("IFRAME");
+                iframe.style.display="none";
+                iframe.setAttribute("src", 'data:text/plain');
+                document.documentElement.appendChild(iframe);
+                window.frames[0].window.alert(name);
+                iframe.parentNode.removeChild(iframe);
+            }
+        }
+        $(".sub").click(function(){
             var name = $("#name").val();
             var content = $("#content").val();
-            if (content == '' || name == ''){
-                alert('请填写名字和内容不能为空哦');
+            if (content == ''){
+                alert('内容不能为空哦');
                 swiper.slideTo(0);
                 return false;
             }
-            if (content.length > 200){
+            if(name ==''){
+                name = '匿名';
+            }
+
+            if (name.length>6) {
+                    alert("名字最多6个字~");
+                    return false;
+                }
+            if (content.length > 100){
                 alert("留言内容太多了,请删除一些");
                 swiper.slideTo(0);
                 return false;
             }
+
+
+            var name_length = name.length;
+
+            var content_length = content.length;
+            var row_length = Math.round(content_length/11);
+
+            switch (name_length){
+                case 1 : 
+                    var type1 = 1+0.7*1;
+                    var type3 = 1+1.17*1;
+                    break;
+                case 2 : 
+                    var type1 = 1+0.55*2;
+                    var type3 = 1+0.68*2;
+                    break;
+                case 3 : 
+                    var type1 = 1+0.45*3;
+                    var type3 = 1+0.56*3;
+                    break;
+                case 4 : 
+                    var type1 = 1+0.55*4;
+                    var type3 = 1+0.49*4;
+                    break;
+                case 5 : 
+                    var type1 = 1+0.55*5;
+                    var type3 = 1+0.48*5;
+                    break;
+                case 6 : 
+                    var type1 = 1+0.75*6;
+                    var type3 = 1+0.48*6;
+                    break;
+                default: 
+                    var type1 = 1+0.55*name_length;
+                    var type3 = 1+0.55*name_length;    
+                    break;
+            }
+
+
+            switch (row_length+1){
+                case 0:
+                    var type1_top = 3.6;
+                    var type3_top = 1.65;
+                    var type1_ti = 10;
+                    var type3_ti = 10;
+                    break;
+                case 1:
+                    var type1_top = 2.1;
+                    var type3_top = 1.65;
+                    var type1_ti = 10;
+                    var type3_ti = 10;
+                    break;
+                case 2 :
+                    var type1_top = 2.1;
+                    var type3_top = 1.65;
+                    var type1_ti = 60;
+                    var type3_ti = 60;
+                    break;
+                case 3 :
+                    var type1_top = 2.1;
+                    var type3_top = 1.7;
+                    var type1_ti = 60;
+                    var type3_ti = 60;
+                    break; 
+                case 4 :
+                    var type1_top = 2.2;
+                    var type3_top = 1.9;
+                    var type1_ti = 60;
+                    var type3_ti = 60;
+                    break; 
+                case 5 :
+                    var type1_top = 2.6;
+                    var type3_top = 1.75;
+                    var type1_ti = 60;
+                    var type3_ti = 60;
+                    break; 
+                case 6 :
+                    var type1_top = 2.3;
+                    var type3_top = 1.9;
+                    var type1_ti = 60;
+                    var type3_ti = 60;
+                    break;
+                default: 
+                    var type1_top = 2.6;
+                    var type3_top = 1.9;
+                    var type1_ti = 60;
+                    var type3_ti = 60;
+                    break; 
+            }
+            getImg('type1','type_img1','/static/img/type1.png',content,"⸻"+name,0.73,1.6,type1,type1_top,7.4,25,35,0,type1_ti,48,32,'bold','')
+            getImg('type2','type_img2','/static/img/type2.png',content,name,0.82,3.4,4.6,2.8,9.8,25,25,0,0,22,22,'bold','')
+            getImg('type3','type_img3','/static/img/type3.png',content,name,0.72,2.4,type3,type3_top,7.1,25,35,0,type3_ti,48,31,'bold','')
+
             swiper.allowSlideNext = true;
             swiper.slideTo(1);
             swiper.allowSlideNext = false;
-		})
+        })
 
         $(".back").click(function () {
             swiper.allowSlidePrev = true;
@@ -298,15 +547,24 @@ body {
             var content = $("#content").val();
 
 
-            if (content == '' || name == ''){
-                alert('请填写名字和内容不能为空哦');
+            if (content == ''){
+                alert('内容不能为空哦');
+                swiper.slideTo(0);
                 return false;
             }
-            if (content.length > 200){
-                alert("留言内容太多了,请删除一些");
-                return false;
+            if(name ==''){
+                name = '匿名';
             }
 
+            if (name.length>6) {
+                    alert("名字最多6个字~");
+                    return false;
+                }
+            if (content.length > 100){
+                alert("留言内容太多了,请删除一些");
+                swiper.slideTo(0);
+                return false;
+            }
 
             $.ajax({
                url: '/index.php/index/index/add',
@@ -331,7 +589,149 @@ body {
             })
         }
 
-	})
-	</script>
+// 绘图开始
+                function getImg(canvas_id, img_id, img_url, text, title, text_width_per, title_top, title_left, text_top, text_left, title_lh, text_lh, title_ti, text_ti, title_fs, text_fs, title_fw, text_fw) {
+                    var img = new Image();
+                    img.src = img_url;
+                    img.onload = function() { //图片加载完成，才可处理
+                        var c = document.getElementById(canvas_id);
+                          var ratio = window.devicePixelRatio || 1;
+                            // console.log(ratio)
+                        c.width = img.width;
+                        c.height = img.height;
+                        var cxt = c.getContext("2d");
+                        cxt.fillStyle = "rgba(255, 255, 255)";
+                        cxt.fillRect(0, 0, c.width, c.height);
+                        cxt.drawImage(img, 0, 0);
+                        cxt.save();
+
+                        var ftop = (c.height) / text_top;
+                        var fleft = (c.width) / text_left;
+
+                        var s1_title_ftop = (c.height) / title_top;
+                        var s1_title_fleft = (c.width) / title_left;
+
+                        var canvasWidth = (c.width) * text_width_per; //计算canvas的宽度
+                        textEllipsis(cxt, text, fleft, ftop, {
+                            maxWidth: canvasWidth,
+                            lineHeight: text_lh,
+                            textIndent: text_ti,
+                            fontSize: text_fs,
+                            fontWeight: false,
+                            fontFamily: 'SSR'
+                        });
+                        textEllipsis(cxt, title, s1_title_fleft, s1_title_ftop, {
+                            maxWidth: canvasWidth,
+                            lineHeight: title_lh,
+                            textIndent: title_ti,
+                            fontSize: title_fs,
+                            fontWeight: true,
+                            fontFamily: 'SSB'
+                        });
+
+                        var img_box = document.getElementById(img_id);
+                        img_box.src = c.toDataURL('image/jpeg')
+
+                    };
+                }
+                /**
+                * 
+                * @param ctx 2d上下文对象
+                * @param text 绘制文本
+                * @param x 坐标轴x位置
+                * @param y 坐标轴y位置
+                * @param options 包含 maxWidth 最大宽度，lineHeight 文字行高，row 限制行数，textIndent 首行缩进，fontSize 文字大小
+                */
+                function textEllipsis(ctx, text, x, y, options) {
+                    if (typeof text !== 'string' || typeof x !== 'number' || typeof y !== 'number') {
+                        return;
+                    }
+                    let defaultOpt = {
+                        maxWidth: 100,
+                        lineHeight: 14,
+                        row: 1000,
+                        textIndent: 0,
+                        fontSize: 14,
+                        fontWeight: false,
+                        fontFamily: 'Arial,sans-serif'
+                    };
+                    let params = Object.assign({},
+                    defaultOpt, options);
+                    // 分割文本
+                    let textArr = text.split('');
+                    // 文本最终占据高度
+                    let textHeight = 0;
+                    // 每行显示的文字
+                    let textOfLine = '';
+                    // 控制行数
+                    let limitRow = params.row;
+                    let rowCount = 0;
+                    // 循环分割的文字数组
+                    for (let i = 0; i < textArr.length; i++) {
+                        // 获取单个文字或字符
+                        let singleWord = textArr[i];
+                        // 连接文字
+                        let connectText = textOfLine + singleWord;
+                        // 计算接下来要写的是否是最后一行
+                        let isLimitRow = limitRow ? rowCount === (limitRow - 1) : false;
+                        // 最后一行则显示省略符,否则显示连接文字
+                        let measureText = isLimitRow ? (connectText + '...') : connectText;
+                        // 设置字体并计算宽度,判断是否存在首行缩进
+                        let bold = params.fontWeight == true
+
+                        if (params.fontWeight == true) {
+                            var font= 'normal bold '+params.fontSize+'px '+params.fontFamily;
+                        }else{
+                            var font= 'normal '+params.fontSize+'px '+params.fontFamily;
+                        }
+                        
+                        ctx.font = font;
+
+                        let width = ctx.measureText(measureText).width;
+                        // 首行需要缩进满足条件
+                        let conditionIndent = (params.textIndent && rowCount === 0);
+                        let measureWidth = conditionIndent ? (width + params.textIndent) : width;
+                        ctx.textBaseline = 'middle'; //更改字号后，必须重置对齐方式，否则居中麻烦。设置文本的垂直对齐方式
+                        ctx.textAlign = 'left';
+                        // 大于限制宽度且已绘行数不是最后一行，则写文字
+                        if (measureWidth > params.maxWidth && i > 0 && rowCount !== limitRow) {
+                            // 如果是最后一行，显示计算文本
+                            let canvasText = isLimitRow ? measureText: textOfLine;
+                            let xPos = conditionIndent ? (x + params.textIndent) : x;
+                            // 写文字
+                            ctx.fillStyle = '#000';
+                            ctx.fillText(canvasText, xPos, y);
+                            // 下一行文字
+                            textOfLine = singleWord;
+                            // 记录下一行位置
+                            y += params.lineHeight;
+                            // 计算文本高度
+                            textHeight += params.lineHeight;
+                            rowCount++;
+
+                            if (isLimitRow) {
+                                break;
+                            }
+                        } else {
+                            // 不大于最大宽度
+                            textOfLine = connectText;
+                        }
+                    }
+                    if (rowCount !== limitRow) {
+                        let xPos = (params.textIndent && rowCount === 0) ? (x + params.textIndent) : x;
+                        ctx.fillStyle = '#000';
+                        ctx.fillText(textOfLine, xPos, y);
+                    }
+                    // 计算文字总高度
+                    let textHeightVal = rowCount < limitRow ? (textHeight + params.lineHeight) : textHeight;
+
+                    return textHeightVal;
+                }
+
+
+
+
+    })
+    </script>
 </body>
 </html>
